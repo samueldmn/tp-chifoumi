@@ -5,10 +5,8 @@ let affichageCoupsJoues = document.querySelectorAll(
   ".container-coups-joues h2" // récupère tous les h2 qui sont enfants de .container-coups-joues
 );
 
-let affichageScore = document.querySelectorAll(".Score h3");
 
-let score_Joueur = 0;
-let score_Ordi = 0;
+
 
 // Appel de la fonction de mise en place d'une nouvelle partie
 commencerPartie();
@@ -28,31 +26,25 @@ function calculerResultat(monCoup, coupOrdi) {
 
     if (monCoup === 2){
         if (coupOrdi === 0){
-            AjouterScore("Ordi");
             return "Looser !"
         }
         else{
-            AjouterScore("Joueur");
             return "OK, gagné ..."
         }
 
     } else if (monCoup === 1){
         if (coupOrdi === 2){
-            AjouterScore("Ordi");
             return "Looser !"
         }
         else{
-            AjouterScore("Joueur");
             return  "OK, gagné ..." 
         }
 
     } else {
         if (coupOrdi === 1){
-            AjouterScore("Ordi");
             return "Looser !"
         }
         else{
-            AjouterScore("Joueur");
             return "OK, gagné ..." 
         }
     }
@@ -112,12 +104,6 @@ function finirPartie(event) {
     affichageCoupsJoues[2].style.display= "block";
     affichageCoupsJoues[2].textContent = coups[coupOrdi];
 
-    // Affichage des scores 
-
-    affichageScore[0].textContent = "Score :";
-    affichageScore[1].textContent = score_Joueur;
-    affichageScore[2].textContent = score_Ordi;
-
 
     // On cache les 1er et 3ème boutons de jeu
     boutons[0].style.display = "none";
@@ -133,20 +119,3 @@ function finirPartie(event) {
     boutons[1].addEventListener("click", commencerPartie);
 
   }
-
-
-function AjouterScore(gagnantCoup) {
-    if (gagnantCoup === "Joueur"){
-        score_Joueur += 1;
-    } 
-    else if (gagnantCoup === "Ordi"){
-        score_Ordi += 1;
-    }
-}
-
-
-function afficherScore() {
-    affichageScore[0].textContent = "Score :";
-    affichageScore[1].textContent = score_Joueur;
-    affichageScore[2].textContent = score_Ordi;
-}
